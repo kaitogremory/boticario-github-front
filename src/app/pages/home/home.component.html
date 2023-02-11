@@ -1,5 +1,6 @@
 <div class="container">
     <button class="updateBtn" mat-raised-button color="primary" (click)="updateGithubRepos()">Update Repositories via GitHub API</button> 
+    <button class="clearBtn" [disabled]="dataSource.length == 0" mat-raised-button color="accent" (click)="clearRepositoriesFromBase()">Clear Repositories from base</button> 
 
     <div class="container" *ngIf="dataSource.length == 0">
         <span>No repository found. Let's make a new search?</span>

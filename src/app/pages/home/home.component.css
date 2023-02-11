@@ -6,6 +6,10 @@ table {
     padding: 50px 80px;
 }
 
-.updateBtn {
+.updateBtn, .clearBtn {
     margin-bottom: 15px;
+}
+
+.clearBtn {
+    float: right;
 }

@@ -26,4 +26,8 @@ export class BoticarioService {
     getRepoDetailByName(name: string): Observable<GithubRepoDetailed>{
         return this.client.get<GithubRepoDetailed>(`${this.apiURL}/getRepoDetailByName/${name}`);
     }
+
+    clearRepositoriesFromBase(): Observable<boolean[]>{
+        return this.client.delete<boolean[]>(`${this.apiURL}/clearRepositoriesFromBase`);
+    }    
 }

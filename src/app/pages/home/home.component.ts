@@ -31,12 +31,13 @@ export class HomeComponent {
 
   getRepositoriesList() {        
     this.spinner.show();
-
     this.boticarioService.getRepositoriesList().subscribe(
       (response:GithubRepo[]) => {      
-      this.dataSource = response;      
-      this.spinner.hide();      
-    }, err => {      
+        if(response != null) {
+          this.dataSource = response;      
+        }
+        this.spinner.hide();    
+    }, err => {            
       this.spinner.hide();
       Swal.fire('Error!', err.message,'error');
     });      
@@ -44,7 +45,6 @@ export class HomeComponent {
 
   openDialog(element: GithubRepo): void {
     this.spinner.show();
-
     this.boticarioService.getRepoDetailByName(element.name).subscribe(
       (response:GithubRepoDetailed) => {        
         response.createdAtViewDate = this.createFormattedTextDate(response.createdAt);
@@ -64,10 +64,8 @@ export class HomeComponent {
 
   updateGithubRepos(): void {
     this.spinner.show();
-
     this.boticarioService.updateListReposFromGithubAPI().subscribe(() => {      
       this.spinner.hide();
-
       Swal.fire({
         title: 'Success!',
         text: 'Repos updated in Database!',
@@ -79,6 +77,39 @@ export class HomeComponent {
     }, err => {
       this.spinner.hide();
       Swal.fire('Error!', err.message,'error');
+    });
+  }
+
+  clearRepositoriesFromBase(): void {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "this cannot be reversed",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "Cancel",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        this.spinner.show();
+        
+        this.boticarioService.clearRepositoriesFromBase().subscribe(() => {      
+          this.spinner.hide();
+          this.dataSource = [];
+          Swal.fire({
+            title: 'Success!',
+            text: 'Successfully cleaned repositories!',
+            icon: 'success',
+            confirmButtonText: 'Ok, thank you!'
+          }).then(async (result) => {
+            
+          });
+        }, err => {
+          this.spinner.hide();
+          Swal.fire('Error!', err.message,'error');
+        });
+      }
     });
   }
 
