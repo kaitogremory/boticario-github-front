@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Consultar detalhes do repositório {{data.name}} </h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Language</mat-label>
+        <input matInput [{ngModel}]="data.language"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [{ngModel}]="data.name"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Full Name</mat-label>
+        <input matInput [{ngModel}]="data.fullName"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Owner</mat-label>
+        <input matInput [{ngModel}]="data.owner"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput [{ngModel}]="data.description"/>
+    </mat-form-field>    
+
+    <mat-form-field>
+        <mat-label>Stars Count</mat-label>
+        <input matInput [{ngModel}]="data.startsCount"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Forks Count</mat-label>
+        <input matInput [{ngModel}]="data.forksCount"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Watchers Count</mat-label>
+        <input matInput [{ngModel}]="data.watchersCount"/>
+    </mat-form-field>    
+
+    <mat-form-field>
+        <mat-label>Created At</mat-label>
+        <input matInput [{ngModel}]="data.createdAt"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Updataded At</mat-label>
+        <input matInput [{ngModel}]="data.updatedAt"/>
+    </mat-form-field>    
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Fechar</button>    
+</div>
