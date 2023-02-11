@@ -46,10 +46,14 @@ export class HomeComponent {
     this.spinner.show();
 
     this.boticarioService.getRepoDetailByName(element.name).subscribe(
-      (response:GithubRepoDetailed) => {      
+      (response:GithubRepoDetailed) => {        
+        response.createdAtViewDate = this.createFormattedTextDate(response.createdAt);
+        response.updatedAtViewDate = this.createFormattedTextDate(response.updatedAt);
       const dialogRef = this.dialog.open(ElementDialogComponent, {
-        width: '400px',
-        data: response
+        width: '700px',
+        data: response,
+        enterAnimationDuration: '500ms',
+        exitAnimationDuration: '500ms'
       }); 
       this.spinner.hide();      
     }, err => {
@@ -61,8 +65,7 @@ export class HomeComponent {
   updateGithubRepos(): void {
     this.spinner.show();
 
-    this.boticarioService.getRepositoriesList().subscribe((response:GithubRepo[]) => {      
-      this.dataSource = response;
+    this.boticarioService.updateListReposFromGithubAPI().subscribe(() => {      
       this.spinner.hide();
 
       Swal.fire({
@@ -76,7 +79,18 @@ export class HomeComponent {
     }, err => {
       this.spinner.hide();
       Swal.fire('Error!', err.message,'error');
-    });    
+    });
+  }
+
+  createFormattedTextDate(date: Date): string {    
+    let dateString = date.toString();
+
+    let year = dateString.substring(0,4);
+    let month = dateString.substring(5,7);
+    let day = dateString.substring(8,10);
+    
+    let result = "" + day + "/" + month + "/" + year;
+    return result;
   }
 }
 

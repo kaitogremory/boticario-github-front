@@ -2,7 +2,7 @@
     <button class="updateBtn" mat-raised-button color="primary" (click)="updateGithubRepos()">Update Repositories via GitHub API</button> 
 
     <div class="container" *ngIf="dataSource.length == 0">
-        <span>No one repository found. Let's make a new search?</span>
+        <span>No repository found. Let's make a new search?</span>
     </div>
     <div class="tableDiv" *ngIf="dataSource.length > 0">
         <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">

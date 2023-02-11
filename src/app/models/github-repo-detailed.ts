@@ -9,4 +9,6 @@ export interface GithubRepoDetailed {
     watchersCount: number;  
     createdAt: Date;
     updatedAt: Date;
+    createdAtViewDate: string;
+    updatedAtViewDate: string;
   }

@@ -1,55 +1,55 @@
-<h1 mat-dialog-title>Consultar detalhes do repositório {{data.name}}</h1>
+<h1 mat-dialog-title>Details from repository: {{data.name}}</h1>
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>Language</mat-label>
-        <!-- <input matInput [{ngModel}]="data.language"/> -->
+        <input readonly matInput [(ngModel)]="data.language">        
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="data.name">
+        <input readonly matInput [(ngModel)]="data.name">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Full Name</mat-label>
-        <!-- <input matInput [{ngModel}]="data.fullName"/> -->
+        <input readonly matInput [(ngModel)]="data.fullName">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Owner</mat-label>
-        <!-- <input matInput [{ngModel}]="data.owner"/> -->
+        <input readonly matInput [(ngModel)]="data.owner">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Description</mat-label>
-        <!-- <input matInput [{ngModel}]="data.description"/> -->
+        <input readonly matInput [(ngModel)]="data.description">
     </mat-form-field>    
 
     <mat-form-field>
         <mat-label>Stars Count</mat-label>
-        <!-- <input matInput [{ngModel}]="data.startsCount"/> -->
+        <input readonly matInput [(ngModel)]="data.starsCount">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Forks Count</mat-label>
-        <!-- <input matInput [{ngModel}]="data.forksCount"/> -->
+        <input readonly matInput [(ngModel)]="data.forksCount">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Watchers Count</mat-label>
-        <!-- <input matInput [{ngModel}]="data.watchersCount"/> -->
-    </mat-form-field>    
+        <input readonly matInput [(ngModel)]="data.watchersCount">
+    </mat-form-field>
 
     <mat-form-field>
         <mat-label>Created At</mat-label>
-        <!-- <input matInput [{ngModel}]="data.createdAt"/> -->
+        <input readonly matInput [(ngModel)]="data.createdAtViewDate">
     </mat-form-field>
 
     <mat-form-field>
-        <mat-label>Updataded At</mat-label>
-        <!-- <input matInput [{ngModel}]="data.updatedAt"/> -->
+        <mat-label>Updated At</mat-label>
+        <input readonly matInput [(ngModel)]="data.updatedAtViewDate">
     </mat-form-field>
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="onCancel()">Fechar</button>    
+<div class="mat-dialog-actions" mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onCancel()">Close</button>    
 </div>

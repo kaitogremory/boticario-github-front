@@ -15,7 +15,9 @@ export class ElementDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: GithubRepoDetailed,
     public dialogRef: MatDialogRef<ElementDialogComponent>
-  ) {}
+  ) {
+    
+  }
 
   ngOnInit(): void {    
     if (this.data.name != null) {
@@ -28,5 +30,4 @@ export class ElementDialogComponent implements OnInit {
   onCancel(): void {
     this.dialogRef.close();
   }
-
 }
