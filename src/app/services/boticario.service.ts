@@ -23,7 +23,7 @@ export class BoticarioService {
         return this.client.get<boolean[]>(`${this.apiURL}/updateListReposFromGithubAPI`);
     }
     
-    getRepoDetailByName(id: any): Observable<GithubRepoDetailed>{
-        return this.client.get<GithubRepoDetailed>(`${this.apiURL}/getRepoDetailByName/${id}`);
+    getRepoDetailByName(name: string): Observable<GithubRepoDetailed>{
+        return this.client.get<GithubRepoDetailed>(`${this.apiURL}/getRepoDetailByName/${name}`);
     }
 }

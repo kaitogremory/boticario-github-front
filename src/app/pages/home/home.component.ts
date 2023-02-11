@@ -29,23 +29,38 @@ export class HomeComponent {
   ngOnInit(): void {
   }
 
-  getRepositoriesList() {
+  getRepositoriesList() {        
     this.spinner.show();
-    this.boticarioService.getRepositoriesList().subscribe((response:GithubRepo[]) => {      
+
+    this.boticarioService.getRepositoriesList().subscribe(
+      (response:GithubRepo[]) => {      
       this.dataSource = response;      
       this.spinner.hide();      
-    });    
+    }, err => {      
+      this.spinner.hide();
+      Swal.fire('Error!', err.message,'error');
+    });      
   }
 
-  openDialog(element: GithubRepoDetailed): void {    
-    const dialogRef = this.dialog.open(ElementDialogComponent, {
-      width: '400px',
-      data: element
-    });   
+  openDialog(element: GithubRepo): void {
+    this.spinner.show();
+
+    this.boticarioService.getRepoDetailByName(element.name).subscribe(
+      (response:GithubRepoDetailed) => {      
+      const dialogRef = this.dialog.open(ElementDialogComponent, {
+        width: '400px',
+        data: response
+      }); 
+      this.spinner.hide();      
+    }, err => {
+      this.spinner.hide();
+      Swal.fire('Error!', err.message,'error');
+    });         
   }  
 
   updateGithubRepos(): void {
     this.spinner.show();
+
     this.boticarioService.getRepositoriesList().subscribe((response:GithubRepo[]) => {      
       this.dataSource = response;
       this.spinner.hide();
@@ -58,6 +73,9 @@ export class HomeComponent {
       }).then(async (result) => {
         this.getRepositoriesList();
       });
+    }, err => {
+      this.spinner.hide();
+      Swal.fire('Error!', err.message,'error');
     });    
   }
 }
