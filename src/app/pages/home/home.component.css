@@ -5,3 +5,7 @@ table {
 .container {
     padding: 50px 80px;
 }
+
+.updateBtn {
+    margin-bottom: 15px;
+}
