@@ -1,25 +1,10 @@
-import { Component } from '@angular/core';
-
-export interface GithubRepo {
-  language: string;
-  name: string;
-  starsCount: number;
-  owner: string;
-  createdAt: Date;
-}
-
-export interface GithubRepoDetailed {
-  language: string;
-  name: string;
-  fullName: string;
-  owner: string;
-  description: string;
-  starsCount: number;
-  forksCount: number;
-  watchersCount: number;  
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTable } from '@angular/material/table';
+import { GithubRepo } from '../../models/github-repo';
+import { GithubRepoDetailed } from '../../models/github-repo-detailed';
+import { ElementDialogComponent } from 'src/app/shared/element-dialog/element-dialog.component';
+import { BoticarioService } from 'src/app/services/boticario.service';
 
 const ELEMENT_DATA: GithubRepo[] = [
   { language: 'Javascript', name: 'teste_repo_1', starsCount: 1079, owner: 'owner 1', createdAt: new Date(2022,2,11) } ,
@@ -52,9 +37,33 @@ const ELEMENT_DATA: GithubRepo[] = [
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [BoticarioService]
 })
 export class HomeComponent {
+  @ViewChild(MatTable)
+  table!: MatTable<any>;
   displayedColumns: string[] = ['language', 'name', 'starsCount', 'owner','createdAt','actions'];
-  dataSource = ELEMENT_DATA;
+  dataSource: GithubRepo[] = [];
+
+  constructor(public dialog: MatDialog, public boticarioService: BoticarioService) {    
+    this.boticarioService.getRepositoriesList()
+      .subscribe((response:GithubRepo[]) => {
+      debugger
+      this.dataSource = response;
+    });    
+  }
+
+  ngOnInit(): void {
+  }
+
+  openDialog(element: GithubRepoDetailed): void {    
+    const dialogRef = this.dialog.open(ElementDialogComponent, {
+      width: '400px',
+      data: element
+    });   
+  }  
 }
+
+
+

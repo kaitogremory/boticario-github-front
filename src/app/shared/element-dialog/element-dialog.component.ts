@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { GithubRepoDetailed } from 'src/app/pages/home/home.component';
+import { GithubRepoDetailed } from '../../models/github-repo-detailed';
 
 @Component({
   selector: 'app-element-dialog',
@@ -9,6 +9,7 @@ import { GithubRepoDetailed } from 'src/app/pages/home/home.component';
 })
 export class ElementDialogComponent implements OnInit {
   element!: GithubRepoDetailed;
+  isChange!: boolean;
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
@@ -17,6 +18,11 @@ export class ElementDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {    
+    if (this.data.name != null) {
+      this.isChange = true;
+    } else {
+      this.isChange = false;
+    }
   }
 
   onCancel(): void {
