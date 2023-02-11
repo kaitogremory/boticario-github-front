@@ -54,8 +54,10 @@ export class HomeComponent {
         title: 'Success!',
         text: 'Repos updated in Database!',
         icon: 'success',
-        confirmButtonText: 'Ok, thank you'
-      })
+        confirmButtonText: 'Ok, thank you!'
+      }).then(async (result) => {
+        this.getRepositoriesList();
+      });
     });    
   }
 }
